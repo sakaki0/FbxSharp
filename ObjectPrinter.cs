@@ -203,7 +203,7 @@ namespace FbxSharp
             FbxVector2 v2;
             FbxVector3 v3;
             FbxVector4 v4;
-            string s;
+            //string s;
             FbxTime t;
             var sb = new StringBuilder();
 

@@ -2,7 +2,7 @@
 
 namespace FbxSharp
 {
-    public class FbxLayerElementTangent
+    public class FbxLayerElementTangent : FbxLayerElementTemplate<FbxVector4>
     {
         public FbxLayerElementTangent()
         {

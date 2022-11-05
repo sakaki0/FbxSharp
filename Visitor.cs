@@ -293,7 +293,7 @@ namespace FbxSharp
             {
                 FbxLayer layer = layerContainer.GetLayer(j);
 
-                int i;
+                //int i;
                 FbxLayerElementMaterial mats = layer.GetMaterials();
                 if (mats != null)
                 {
@@ -325,7 +325,7 @@ namespace FbxSharp
 
         protected void _AcceptFbxDocument(FbxDocument obj, ISet<object> visitedObjects)
         {
-            int i;
+            //int i;
             //for (i = 0; i < obj.GetRootMemberCount(); i++)
             //{
             //    Accept(obj.GetRootMember(i));
@@ -339,7 +339,7 @@ namespace FbxSharp
 
         protected void _AcceptFbxCollection(FbxCollection obj, ISet<object> visitedObjects)
         {
-            int i;
+            //int i;
             //for (i = 0; i < obj.GetMemberCount(); i++)
             //{
             //    Accept(obj.GetMember(i));
@@ -364,8 +364,8 @@ namespace FbxSharp
 
         protected void _AcceptFbxAnimCurveNode(FbxAnimCurveNode obj, ISet<object> visitedObjects)
         {
-            int i;
-            int j;
+            //int i;
+            //int j;
 
             //for (i = 0; i < obj.GetChannelsCount(); i++)
             //{

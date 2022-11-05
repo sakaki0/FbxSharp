@@ -798,7 +798,7 @@ namespace FbxSharp
         public static List<List<long>> ConvertPolygonVertexIndex(ParseObject obj)
         {
             var values = obj.Properties[0].Values;
-            int i;
+            //int i;
             var polygons = new List<List<long>>();
             var current = new List<long>();
             foreach (var v in values)
@@ -1136,6 +1136,8 @@ namespace FbxSharp
                     throw new ConversionException(prop.Location, string.Format("Unknown property in FbxCluster. Expected 'Version', 'UserData', 'Indexes', 'Weights', 'Transform', or 'TransformLink'. Got '{0}' instead.", prop.Name));
                 }
             }
+
+            System.Diagnostics.Debug.Print($"{nameof(hasIndexes)}={hasIndexes} {nameof(hasWeights)}={hasWeights} {nameof(hasTransform)}={hasTransform} {nameof(hasTransformLink)}={hasTransformLink}");
 
             return cluster;
         }
