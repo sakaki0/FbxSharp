@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace FbxSharp
 {
-    public class Converter7300 : IConverter
+    public class Converter7300 : AbstractConverter
     {
-        public FbxScene ConvertScene(List<ParseObject> parsedObjects)
+        public override FbxScene ConvertScene(List<ParseObject> parsedObjects)
         {
             var parsed = new ParseObject {
                 Name = "Parsed Scene",
@@ -510,7 +510,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 101)
+                    if (Strict && version != 101)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxLayerElementNormal. Expected '101'. Got '{0}' instead.", version));
                     break;
                 case "Name":
@@ -528,6 +528,16 @@ namespace FbxSharp
                         .Select(n => ((Number)n).AsDouble.Value)
                         .ToVector3List()
                         .Select(v => v.ToVector4()));
+                    break;
+                case "NormalsW":
+                    normals.GetWComponentArray().List.AddRange(
+                        prop.Properties[0].Values
+                        .Select(n => ((Number)n).AsDouble.Value));
+                    break;
+                case "NormalsIndex":
+                    normals.GetIndexArray().List.AddRange(
+                        prop.Properties[0].Values
+                        .Select(n => (int)((Number)n).AsLong.Value));
                     break;
                 default:
                     throw new ConversionException(prop.Location, string.Format("Unknown property in FbxLayerElementNormal. Expected 'Version', 'Name', 'MappingInformationType', 'ReferenceInformationType', or 'Normals'. Got '{0}' instead.", prop.Name));
@@ -674,6 +684,8 @@ namespace FbxSharp
             {
             case "Direct":
                 return FbxLayerElement.EReferenceMode.Direct;
+            case "Index":
+                return FbxLayerElement.EReferenceMode.Index;
             case "IndexToDirect":
                 return FbxLayerElement.EReferenceMode.IndexToDirect;
             default:

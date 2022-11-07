@@ -71,5 +71,12 @@ namespace FbxSharp
             return ((Number)v.Values[0]).AsLong;
         }
     }
+
+    public abstract class AbstractConverter : IConverter
+    {
+        public static bool Strict { get; set; }
+
+        public abstract FbxScene ConvertScene(List<ParseObject> parsedObjects);
+    }
 }
 

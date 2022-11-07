@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace FbxSharp
 {
-    public class Converter7200 : IConverter
+    public class Converter7200 : AbstractConverter
     {
-        public FbxScene ConvertScene(List<ParseObject> parsedObjects)
+        public override FbxScene ConvertScene(List<ParseObject> parsedObjects)
         {
             throw new NotImplementedException();
         }

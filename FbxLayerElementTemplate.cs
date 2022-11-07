@@ -16,6 +16,12 @@ namespace FbxSharp
             return indexes;
         }
 
+        readonly LayerElementArrayT<double> wpomponent = new LayerElementArrayT<double>();
+        public LayerElementArrayT<double> GetWComponentArray()
+        {
+            return wpomponent;
+        }
+
         public override bool Clear()
         {
             direct.List.Clear();

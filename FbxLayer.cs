@@ -8,6 +8,8 @@ namespace FbxSharp
         public FbxLayer()
         {
             normals = new ObjectView<FbxLayerElementNormal, FbxLayerElement>(elements, eh => elements.CollectionChanged += eh);
+            tangents = new ObjectView<FbxLayerElementTangent, FbxLayerElement>(elements, eh => elements.CollectionChanged += eh);
+            binormals = new ObjectView<FbxLayerElementBinormal, FbxLayerElement>(elements, eh => elements.CollectionChanged += eh);
             materials = new ObjectView<FbxLayerElementMaterial, FbxLayerElement>(elements, eh => elements.CollectionChanged += eh);
             uvs = new ObjectView<FbxLayerElementUV, FbxLayerElement>(elements, eh => elements.CollectionChanged += eh);
             visibility = new ObjectView<FbxLayerElementVisibility, FbxLayerElement>(elements, eh => elements.CollectionChanged += eh);
@@ -20,7 +22,7 @@ namespace FbxSharp
         readonly ObjectView<FbxLayerElementNormal, FbxLayerElement> normals;
         public FbxLayerElementNormal GetNormals()
         {
-            return normals.Get();
+            return normals?.Get();
         }
         public void SetNormals(FbxLayerElementNormal pNormals)
         {
@@ -32,22 +34,34 @@ namespace FbxSharp
             elements.Add(pNormals);
         }
 
+        readonly ObjectView<FbxLayerElementTangent, FbxLayerElement> tangents;
         public FbxLayerElementTangent GetTangents()
         {
-            throw new NotImplementedException();
+            return tangents.Get();
         }
         public void SetTangents(FbxLayerElementTangent pTangents)
         {
-            throw new NotImplementedException();
+            if (tangents.Get() != null)
+            {
+                elements.Remove(tangents.Get());
+            }
+
+            elements.Add(pTangents);
         }
 
+        readonly ObjectView<FbxLayerElementBinormal, FbxLayerElement> binormals;
         public FbxLayerElementBinormal GetBinormals()
         {
-            throw new NotImplementedException();
+            return binormals.Get();
         }
         public void SetBinormals(FbxLayerElementBinormal pBinormals)
         {
-            throw new NotImplementedException();
+            if (binormals.Get() != null)
+            {
+                elements.Remove(binormals.Get());
+            }
+
+            elements.Add(pBinormals);
         }
 
         readonly ObjectView<FbxLayerElementMaterial, FbxLayerElement> materials;
