@@ -16,7 +16,8 @@ namespace FbxSharp
 
 	static string FormatMessage(InputLocation location, string message)
 	{
-            return string.Format("at {0}:{1},{2}: {3}", location.Filename, location.Line, location.Column, message);
+          //return string.Format("at {0}:{1},{2}: {3}", location.Filename, location.Line, location.Column, message);
+            return string.Format("{0}({1},{2}): {3}", location.Filename, location.Line, location.Column, message);
         }
 
         public ParseException(string message)

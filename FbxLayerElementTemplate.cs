@@ -2,8 +2,13 @@
 
 namespace FbxSharp
 {
-    public class FbxLayerElementTemplate<T> : FbxLayerElement
+    public abstract class FbxLayerElementTemplate<T> : FbxLayerElement
     {
+        protected FbxLayerElementTemplate(EType type)
+            : base(type)
+        {
+        }
+
         readonly LayerElementArrayT<T> direct = new LayerElementArrayT<T>();
         public LayerElementArrayT<T> GetDirectArray()
         {

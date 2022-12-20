@@ -25,6 +25,7 @@ namespace FbxSharp
         public readonly bool IgnoreWhitespace;
         public readonly string Filename;
 
+        int tokenCount = 0;
         int index = 0;
         int line = 1;
         int column = 0;
@@ -80,6 +81,15 @@ namespace FbxSharp
                     {
                         var value = new string(newTokenChars.ToArray());
                         var token = new Token(currentTokenType, value, tokenLocation);
+
+                        if(tokenCount == 0)
+                        {
+                            if(!token.Value.StartsWith("; FBX"))
+                                throw new NotSupportedException("Binar format is not supported.");
+                        }
+
+                        tokenCount++;
+
                         currentTokenType = TokenType.None;
                         if (!ShouldIgnoreToken(token))
                         {

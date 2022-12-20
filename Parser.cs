@@ -19,6 +19,7 @@ namespace FbxSharp
         public List<ParseObject> ReadFile()
         {
             var properties = new List<ParseObject>();
+
             while (PeekNextToken().HasValue)
             {
                 var item = ReadObject();

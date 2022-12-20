@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FbxSharp
 {
-    public class FbxLayerElement
+    public abstract class FbxLayerElement
     {
         public enum EType
         {
@@ -58,9 +58,15 @@ namespace FbxSharp
             IndexToDirect,
         }
 
+        public EType Type;
         public string Name;
         public EMappingMode MappingMode;
         public EReferenceMode ReferenceMode;
+
+        protected FbxLayerElement(EType type)
+        {
+            Type = type;
+        }
 
         public string GetName()
         {

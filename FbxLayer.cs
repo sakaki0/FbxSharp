@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FbxSharp
 {
@@ -195,8 +196,9 @@ namespace FbxSharp
 
         public FbxLayerElement GetLayerElementOfType(FbxLayerElement.EType pType, bool pIsUV=false)
         {
-            throw new NotImplementedException();
+            return elements.FirstOrDefault(i => i.Type == pType);
         }
+
         public void SetLayerElementOfType(FbxLayerElement pLayerElement, FbxLayerElement.EType pType, bool pIsUV=false)
         {
             throw new NotImplementedException();

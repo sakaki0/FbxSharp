@@ -291,7 +291,7 @@ namespace FbxSharp
                     break;
                 case "GeometryVersion":
                     var gversion = ((Number)prop.Values[0]).AsLong.Value;
-                    if (gversion != 124)
+                    if (Strict && gversion != 124)
                         throw new ConversionException(prop.Location, string.Format("Unknown geometry version in FbxLight. Expected '124'. Got '{0}' instead.", gversion));
                     break;
                 default:
@@ -420,7 +420,7 @@ namespace FbxSharp
                     // skip for now
                     break;
                 case "GeometryVersion":
-                    if (((Number)prop.Values[0]).AsLong.Value != 124)
+                    if (Strict && ((Number)prop.Values[0]).AsLong.Value != 124)
                         throw new ConversionException(prop.Location, string.Format("Unknown geometry version in FbxMesh. Expected '124'. Got '{0}' instead.", ((Number)prop.Values[0]).AsLong.Value));
                     break;
                 case "LayerElementNormal":
@@ -465,7 +465,7 @@ namespace FbxSharp
                     if (prop.Values.Count < 0)
                         throw new ConversionException(prop.Location, "No value for 'Version' in FbxLayer.");
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 100)
+                    if (Strict && version != 100)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxLayer. Expected '100'. Got '{0}' instead.", version));
                     break;
                 case "LayerElement":
@@ -557,7 +557,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 101)
+                    if (Strict && version != 101)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxLayerElementUV. Expected '101'. Got '{0}' instead.", version));
                     break;
                 case "Name":
@@ -598,7 +598,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 101)
+                    if (Strict && version != 101)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxLayerElementVisibility. Expected '101'. Got '{0}' instead.", version));
                     break;
                 case "Name":
@@ -631,7 +631,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 101)
+                    if (Strict && version != 101)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxLayerElementMaterial. Expected '101'. Got '{0}' instead.", version));
                     break;
                 case "Name":
@@ -723,6 +723,7 @@ namespace FbxSharp
                     break;
                 case "Visibility":
                 case "bool":
+                case "Bool":
                     propType = typeof(bool);
                     propValue = (((Number)p.Values[4]).AsLong.Value != 0);
                     break;
@@ -857,7 +858,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 232)
+                    if (Strict && version != 232)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxNode. Expected '232'. Got '{0}' instead.", version));
                     break;
                 case "Properties70":
@@ -938,7 +939,7 @@ namespace FbxSharp
                     break;
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 100)
+                    if (Strict && version != 100)
                         throw new ConversionException(prop.Location, string.Format("Unknown version. Expected 100. Got {0} instead.", version));
                     break;
                 case "NbPoseNodes":
@@ -1030,7 +1031,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 102)
+                    if (Strict && version != 102)
                         throw new ConversionException(prop.Location, string.Format("Unknown version. Expected 102. Got {0} instead.", version));
                     break;
                 case "ShadingModel":
@@ -1085,7 +1086,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 101)
+                    if (Strict && version != 101)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxSkin. Expected '101'. Got '{0}' instead.", version));
                     break;
                 case "Link_DeformAcuracy":  // TODO: double-check spelling
@@ -1121,7 +1122,7 @@ namespace FbxSharp
                 {
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 100)
+                    if (Strict && version != 100)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxSkin. Expected '100'. Got '{0}' instead.", version));
                     break;
                 case "UserData":
@@ -1213,7 +1214,7 @@ namespace FbxSharp
                     break;
                 case "Version":
                     var version = ((Number)prop.Values[0]).AsLong.Value;
-                    if (version != 202)
+                    if (Strict && version != 202)
                         throw new ConversionException(prop.Location, string.Format("Unknown Version in FbxTexture. Expected '202'. Got '{0}' instead.", version));
                     break;
                 case "TextureName":
@@ -1397,7 +1398,7 @@ namespace FbxSharp
                     break;
                 case "KeyVer":
                     long keyVersion = ((Number)prop.Values[0]).AsLong.Value;
-                    if (keyVersion != 4008 && keyVersion != 4009)
+                    if (Strict && keyVersion != 4008 && keyVersion != 4009)
                         throw new ConversionException(prop.Location, string.Format("Unknown KeyVer. Expected 4008 or 4009. Got {0} instead.", keyVersion));
                     break;
                 case "KeyTime":
